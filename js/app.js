@@ -1,9 +1,8 @@
 $(document).ready(function() {
 
-    $(".new").click(function() {
+    $(".new").click(function(event) {
         var num = generate();
         console.log(num);
-
         var counter = 1;
 
         $(".button").on("click", function(event) {
@@ -12,7 +11,7 @@ $(document).ready(function() {
             counter++;
             var input = parseInt($('#userGuess').val());
             var difference = Math.abs(num - input);
-            $('ul#guessList').append('<li>' + parseInt($('#userGuess').val()) + '</li>').show();
+            $('ul#guessList').append("<li class='lists'>" + parseInt($('#userGuess').val()) + '</li>').show();
             console.log(input);
             if (difference === 0) {
                 $('h2').text("You got it!");
@@ -30,6 +29,9 @@ $(document).ready(function() {
                 $('h2').text("Invalid!")
             }
         })
+        $("ul#guessList").children('li').remove();
+        $('#count').text('0');
+        $('h2').text('Make your Guess!');
     });
     var generate = function() {
         return Math.floor(Math.random() * 100);
